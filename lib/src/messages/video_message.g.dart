@@ -7,6 +7,8 @@ part of 'video_message.dart';
 // **************************************************************************
 
 VideoMessage _$VideoMessageFromJson(Map<String, dynamic> json) => VideoMessage(
+      length: Duration(milliseconds: json['length'] as int),
+      mimeType: json['mimeType'] as String?,
       author: User.fromJson(json['author'] as Map<String, dynamic>),
       createdAt: json['createdAt'] as int?,
       height: (json['height'] as num?)?.toDouble(),
@@ -19,7 +21,7 @@ VideoMessage _$VideoMessageFromJson(Map<String, dynamic> json) => VideoMessage(
           : Message.fromJson(json['repliedMessage'] as Map<String, dynamic>),
       roomId: json['roomId'] as String?,
       showStatus: json['showStatus'] as bool?,
-      size: json['size'] as num,
+      size: json['size'] as num?,
       status: $enumDecodeNullable(_$StatusEnumMap, json['status']),
       type: $enumDecodeNullable(_$MessageTypeEnumMap, json['type']),
       updatedAt: json['updatedAt'] as int?,
@@ -40,6 +42,8 @@ Map<String, dynamic> _$VideoMessageToJson(VideoMessage instance) {
 
   writeNotNull('createdAt', instance.createdAt);
   val['id'] = instance.id;
+  val['length'] = instance.length.inMilliseconds;
+  writeNotNull('mimeType', instance.mimeType);
   writeNotNull('metadata', instance.metadata);
   writeNotNull('remoteId', instance.remoteId);
   writeNotNull('repliedMessage', instance.repliedMessage?.toJson());
@@ -49,8 +53,8 @@ Map<String, dynamic> _$VideoMessageToJson(VideoMessage instance) {
   val['type'] = _$MessageTypeEnumMap[instance.type]!;
   writeNotNull('updatedAt', instance.updatedAt);
   writeNotNull('height', instance.height);
+  writeNotNull('size', instance.size);
   val['name'] = instance.name;
-  val['size'] = instance.size;
   val['uri'] = instance.uri;
   writeNotNull('width', instance.width);
   return val;

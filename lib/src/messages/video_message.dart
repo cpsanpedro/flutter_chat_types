@@ -15,15 +15,17 @@ abstract class VideoMessage extends Message {
   const VideoMessage._({
     required super.author,
     super.createdAt,
+    required this.length,
     this.height,
     required super.id,
     super.metadata,
+    this.mimeType,
     required this.name,
     super.remoteId,
     super.repliedMessage,
     super.roomId,
     super.showStatus,
-    required this.size,
+    this.size,
     super.status,
     MessageType? type,
     super.updatedAt,
@@ -34,15 +36,17 @@ abstract class VideoMessage extends Message {
   const factory VideoMessage({
     required User author,
     int? createdAt,
+    required Duration length,
     double? height,
     required String id,
     Map<String, dynamic>? metadata,
+    String? mimeType,
     required String name,
     String? remoteId,
     Message? repliedMessage,
     String? roomId,
     bool? showStatus,
-    required num size,
+    num? size,
     Status? status,
     MessageType? type,
     int? updatedAt,
@@ -69,9 +73,11 @@ abstract class VideoMessage extends Message {
       _VideoMessage(
         author: author,
         createdAt: createdAt,
+        length: partialVideo.length,
         height: partialVideo.height,
         id: id,
         metadata: partialVideo.metadata,
+        mimeType: partialVideo.mimeType,
         name: partialVideo.name,
         remoteId: remoteId,
         repliedMessage: partialVideo.repliedMessage,
@@ -92,7 +98,7 @@ abstract class VideoMessage extends Message {
   final String name;
 
   /// Size of the video in bytes.
-  final num size;
+  final num? size;
 
   /// The video source (either a remote URL or a local resource).
   final String uri;
@@ -100,14 +106,22 @@ abstract class VideoMessage extends Message {
   /// Video width in pixels.
   final double? width;
 
+    /// The length of the video
+  final Duration length;
+
+  /// Media type
+  final String? mimeType;
+
   /// Equatable props.
   @override
   List<Object?> get props => [
         author,
         createdAt,
+        length,
         height,
         id,
         metadata,
+        mimeType,
         name,
         remoteId,
         repliedMessage,
@@ -124,9 +138,11 @@ abstract class VideoMessage extends Message {
   Message copyWith({
     User? author,
     int? createdAt,
+    Duration? length,
     double? height,
     String? id,
     Map<String, dynamic>? metadata,
+    String? mimeType,
     String? name,
     String? remoteId,
     Message? repliedMessage,
@@ -149,15 +165,17 @@ class _VideoMessage extends VideoMessage {
   const _VideoMessage({
     required super.author,
     super.createdAt,
+    required super.length,
     super.height,
     required super.id,
     super.metadata,
+    super.mimeType,
     required super.name,
     super.remoteId,
     super.repliedMessage,
     super.roomId,
     super.showStatus,
-    required super.size,
+    super.size,
     super.status,
     super.type,
     super.updatedAt,
@@ -169,9 +187,11 @@ class _VideoMessage extends VideoMessage {
   Message copyWith({
     User? author,
     dynamic createdAt = _Unset,
+    Duration? length,
     dynamic height = _Unset,
     String? id,
     dynamic metadata = _Unset,
+    dynamic mimeType = _Unset,
     String? name,
     dynamic remoteId = _Unset,
     dynamic repliedMessage = _Unset,
@@ -184,6 +204,8 @@ class _VideoMessage extends VideoMessage {
     dynamic width = _Unset,
   }) =>
       _VideoMessage(
+        length: length ?? this.length,
+        mimeType: mimeType == _Unset ? this.mimeType : mimeType as String?,
         author: author ?? this.author,
         createdAt: createdAt == _Unset ? this.createdAt : createdAt as int?,
         height: height == _Unset ? this.height : height as double?,

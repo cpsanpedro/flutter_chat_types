@@ -17,9 +17,11 @@ class PartialVideo {
   const PartialVideo({
     this.height,
     this.metadata,
+    required this.length,
+    this.mimeType,
     required this.name,
     this.repliedMessage,
-    required this.size,
+    this.size,
     required this.uri,
     this.width,
   });
@@ -31,6 +33,12 @@ class PartialVideo {
   /// Video height in pixels.
   final double? height;
 
+  /// The length of the video
+  final Duration length;
+
+  /// Media type
+  final String? mimeType;
+
   /// Additional custom metadata or attributes related to the message.
   final Map<String, dynamic>? metadata;
 
@@ -41,7 +49,7 @@ class PartialVideo {
   final Message? repliedMessage;
 
   /// Size of the video in bytes.
-  final num size;
+  final num? size;
 
   /// The video source (either a remote URL or a local resource).
   final String uri;

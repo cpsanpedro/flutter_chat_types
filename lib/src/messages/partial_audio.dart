@@ -14,12 +14,12 @@ class PartialAudio {
   /// You can use [AudioMessage.fromPartial] constructor to create a full
   /// message from a partial one.
   const PartialAudio({
-    required this.duration,
+    required this.length,
     this.metadata,
     this.mimeType,
     required this.name,
     this.repliedMessage,
-    required this.size,
+    this.size,
     required this.uri,
     this.waveForm,
   });
@@ -29,7 +29,7 @@ class PartialAudio {
       _$PartialAudioFromJson(json);
 
   /// The length of the audio.
-  final Duration duration;
+  final Duration length;
 
   /// Additional custom metadata or attributes related to the message.
   final Map<String, dynamic>? metadata;
@@ -44,7 +44,7 @@ class PartialAudio {
   final Message? repliedMessage;
 
   /// Size of the audio in bytes.
-  final num size;
+  final num? size;
 
   /// The audio file source (either a remote URL or a local resource).
   final String uri;

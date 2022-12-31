@@ -9,7 +9,7 @@ part of 'audio_message.dart';
 AudioMessage _$AudioMessageFromJson(Map<String, dynamic> json) => AudioMessage(
       author: User.fromJson(json['author'] as Map<String, dynamic>),
       createdAt: json['createdAt'] as int?,
-      duration: Duration(microseconds: json['duration'] as int),
+      length: Duration(milliseconds: json['length'] as int),
       id: json['id'] as String,
       metadata: json['metadata'] as Map<String, dynamic>?,
       mimeType: json['mimeType'] as String?,
@@ -20,14 +20,12 @@ AudioMessage _$AudioMessageFromJson(Map<String, dynamic> json) => AudioMessage(
           : Message.fromJson(json['repliedMessage'] as Map<String, dynamic>),
       roomId: json['roomId'] as String?,
       showStatus: json['showStatus'] as bool?,
-      size: json['size'] as num,
+      size: json['size'] as num?,
       status: $enumDecodeNullable(_$StatusEnumMap, json['status']),
       type: $enumDecodeNullable(_$MessageTypeEnumMap, json['type']),
       updatedAt: json['updatedAt'] as int?,
       uri: json['uri'] as String,
-      waveForm: (json['waveForm'] as List<dynamic>?)
-          ?.map((e) => (e as num).toDouble())
-          .toList(),
+      waveForm: json['waveForm'] as List<double>,
     );
 
 Map<String, dynamic> _$AudioMessageToJson(AudioMessage instance) {
@@ -51,7 +49,7 @@ Map<String, dynamic> _$AudioMessageToJson(AudioMessage instance) {
   writeNotNull('status', _$StatusEnumMap[instance.status]);
   val['type'] = _$MessageTypeEnumMap[instance.type]!;
   writeNotNull('updatedAt', instance.updatedAt);
-  val['duration'] = instance.duration.inMicroseconds;
+  val['length'] = instance.length.inMilliseconds;
   writeNotNull('mimeType', instance.mimeType);
   val['name'] = instance.name;
   val['size'] = instance.size;

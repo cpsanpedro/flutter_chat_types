@@ -15,7 +15,7 @@ abstract class AudioMessage extends Message {
   const AudioMessage._({
     required super.author,
     super.createdAt,
-    required this.duration,
+    required this.length,
     required super.id,
     super.metadata,
     this.mimeType,
@@ -24,7 +24,7 @@ abstract class AudioMessage extends Message {
     super.repliedMessage,
     super.roomId,
     super.showStatus,
-    required this.size,
+    this.size,
     super.status,
     MessageType? type,
     super.updatedAt,
@@ -35,7 +35,7 @@ abstract class AudioMessage extends Message {
   const factory AudioMessage({
     required User author,
     int? createdAt,
-    required Duration duration,
+    required Duration length,
     required String id,
     Map<String, dynamic>? metadata,
     String? mimeType,
@@ -44,7 +44,7 @@ abstract class AudioMessage extends Message {
     Message? repliedMessage,
     String? roomId,
     bool? showStatus,
-    required num size,
+    num? size,
     Status? status,
     MessageType? type,
     int? updatedAt,
@@ -71,7 +71,7 @@ abstract class AudioMessage extends Message {
       _AudioMessage(
         author: author,
         createdAt: createdAt,
-        duration: partialAudio.duration,
+        length: partialAudio.length,
         id: id,
         metadata: partialAudio.metadata,
         mimeType: partialAudio.mimeType,
@@ -89,7 +89,7 @@ abstract class AudioMessage extends Message {
       );
 
   /// The length of the audio.
-  final Duration duration;
+  final Duration length;
 
   /// Media type of the audio file.
   final String? mimeType;
@@ -98,7 +98,7 @@ abstract class AudioMessage extends Message {
   final String name;
 
   /// Size of the audio in bytes.
-  final num size;
+  final num? size;
 
   /// The audio file source (either a remote URL or a local resource).
   final String uri;
@@ -111,7 +111,7 @@ abstract class AudioMessage extends Message {
   List<Object?> get props => [
         author,
         createdAt,
-        duration,
+        length,
         id,
         metadata,
         mimeType,
@@ -131,7 +131,7 @@ abstract class AudioMessage extends Message {
   Message copyWith({
     User? author,
     int? createdAt,
-    Duration? duration,
+    Duration? length,
     String? id,
     Map<String, dynamic>? metadata,
     String? mimeType,
@@ -157,7 +157,7 @@ class _AudioMessage extends AudioMessage {
   const _AudioMessage({
     required super.author,
     super.createdAt,
-    required super.duration,
+    required super.length,
     required super.id,
     super.metadata,
     super.mimeType,
@@ -166,7 +166,7 @@ class _AudioMessage extends AudioMessage {
     super.repliedMessage,
     super.roomId,
     super.showStatus,
-    required super.size,
+    super.size,
     super.status,
     super.type,
     super.updatedAt,
@@ -178,7 +178,7 @@ class _AudioMessage extends AudioMessage {
   Message copyWith({
     User? author,
     dynamic createdAt = _Unset,
-    Duration? duration,
+    Duration? length,
     String? id,
     dynamic metadata = _Unset,
     dynamic mimeType = _Unset,
@@ -196,7 +196,7 @@ class _AudioMessage extends AudioMessage {
       _AudioMessage(
         author: author ?? this.author,
         createdAt: createdAt == _Unset ? this.createdAt : createdAt as int?,
-        duration: duration ?? this.duration,
+        length: length ?? this.length,
         id: id ?? this.id,
         metadata: metadata == _Unset
             ? this.metadata
