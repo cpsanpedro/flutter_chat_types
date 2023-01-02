@@ -49,7 +49,7 @@ abstract class AudioMessage extends Message {
     MessageType? type,
     int? updatedAt,
     required String uri,
-    List<double>? waveForm,
+    List<dynamic>? waveForm,
   }) = _AudioMessage;
 
   /// Creates an audio message from a map (decoded JSON).
@@ -104,7 +104,7 @@ abstract class AudioMessage extends Message {
   final String uri;
 
   /// Wave form represented as a list of decibel levels.
-  final List<double>? waveForm;
+  final List<dynamic>? waveForm;
 
   /// Equatable props.
   @override
@@ -144,7 +144,7 @@ abstract class AudioMessage extends Message {
     Status? status,
     int? updatedAt,
     String? uri,
-    List<double>? waveForm,
+    List<dynamic>? waveForm,
   });
 
   /// Converts an audio message to the map representation, encodable to JSON.
@@ -215,7 +215,7 @@ class _AudioMessage extends AudioMessage {
         updatedAt: updatedAt == _Unset ? this.updatedAt : updatedAt as int?,
         uri: uri ?? this.uri,
         waveForm:
-            waveForm == _Unset ? this.waveForm : waveForm as List<double>?,
+            waveForm == _Unset ? this.waveForm : waveForm as List<dynamic>?,
       );
 }
 

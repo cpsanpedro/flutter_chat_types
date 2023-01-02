@@ -25,7 +25,7 @@ AudioMessage _$AudioMessageFromJson(Map<String, dynamic> json) => AudioMessage(
       type: $enumDecodeNullable(_$MessageTypeEnumMap, json['type']),
       updatedAt: json['updatedAt'] as int?,
       uri: json['uri'] as String,
-      waveForm: json['waveForm'] as List<double>,
+      waveForm: json['waveForm'] as List<dynamic>,
     );
 
 Map<String, dynamic> _$AudioMessageToJson(AudioMessage instance) {

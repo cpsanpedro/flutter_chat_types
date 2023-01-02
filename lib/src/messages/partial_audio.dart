@@ -50,7 +50,7 @@ class PartialAudio {
   final String uri;
 
   /// Wave form represented as a list of decibel levels.
-  final List<double>? waveForm;
+  final List<dynamic>? waveForm;
 
   /// Converts a partial audio message to the map representation, encodable to JSON.
   Map<String, dynamic> toJson() => _$PartialAudioToJson(this);
